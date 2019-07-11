@@ -31,6 +31,11 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
