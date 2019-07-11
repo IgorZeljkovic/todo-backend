@@ -17,9 +17,12 @@ class CreateTodosTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('description');
-            $table->enum('priority', ['Low', 'Medium', 'High'])->nullable($value = true);
-            $table->boolean('completed')->default(false);
-            $table->bigInteger('user_id');
+            $table->enum('priority', ['Low', 'Medium', 'High'])->nullable();
+            $table->boolean('is_completed')->default(false);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

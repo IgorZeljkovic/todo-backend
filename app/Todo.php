@@ -10,6 +10,6 @@ class Todo extends Model
     use Notifiable;
     
     protected $fillable = [
-        'title', 'description', 'priority', 'completed', 'user_id'
+        'title', 'description', 'priority', 'is_completed', 'user_id'
     ];
 }

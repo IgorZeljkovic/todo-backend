@@ -43,9 +43,8 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        return Todo::create(array_merge($request->except('completed', 'user_id'), [
-            'completed' => false,
-            'user_id' => auth()->user()->id
+        return Todo::create(array_merge($request->all(), [
+            'user_id' => auth()->id()
         ]));
     }
 
@@ -78,9 +77,11 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Todo $todo)
     {
-        return Todo::where('id', $id)->update(array_merge($request->all()));
+        $todo->update($request->all());
+
+        return $todo;
     }
 
     /**
@@ -91,6 +92,6 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        return Todo::where('id', $id)->delete();
+        return Todo::destroy($id);
     }
 }
