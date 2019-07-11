@@ -16,7 +16,7 @@ return [
     'allowedOrigins' => ['http://localhost:3000/*'],
     'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
-    'allowedMethods' => ['*'],
+    'allowedMethods' => ['GET, POST'],
     'exposedHeaders' => [],
     'maxAge' => 0,
 
